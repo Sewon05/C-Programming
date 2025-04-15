@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ctype.h>  // isdigit(), isalpha() »ç¿ë
+#include <ctype.h>  // isdigit(), isalpha() ì‚¬ìš©
 #include <string.h>
 #include <stdlib.h>
 
@@ -10,41 +10,41 @@ typedef struct {
     int top;
 } Stack;
 
-// ½ºÅÃ ÃÊ±âÈ­
+// ìŠ¤íƒ ì´ˆê¸°í™”
 void initStack(Stack* s) {
     s->top = -1;
 }
 
-// ½ºÅÃÀÌ ºñ¾ú´ÂÁö È®ÀÎ
+// ìŠ¤íƒì´ ë¹„ì—ˆëŠ”ì§€ í™•ì¸
 int isEmpty(Stack* s) {
     return s->top == -1;
 }
 
-// ½ºÅÃ¿¡ ¿ä¼Ò Ãß°¡
+// ìŠ¤íƒì— ìš”ì†Œ ì¶”ê°€
 void push(Stack* s, int value) {
     s->data[++(s->top)] = value;
 }
 
-// ½ºÅÃ¿¡¼­ ¿ä¼Ò Á¦°Å
+// ìŠ¤íƒì—ì„œ ìš”ì†Œ ì œê±°
 int pop(Stack* s) {
     if (isEmpty(s)) return '\0';
     return s->data[(s->top)--];
 }
 
-// ½ºÅÃ ÃÖ»ó´Ü ¿ä¼Ò ¹İÈ¯
+// ìŠ¤íƒ ìµœìƒë‹¨ ìš”ì†Œ ë°˜í™˜
 int peek(Stack* s) {
     if (isEmpty(s)) return '\0';
     return s->data[s->top];
 }
 
-// ¿¬»êÀÚ ¿ì¼±¼øÀ§ ¼³Á¤
+// ì—°ì‚°ì ìš°ì„ ìˆœìœ„ ì„¤ì •
 int precedence(char op) {
     if (op == '+' || op == '-') return 1;
     if (op == '*' || op == '/') return 2;
-    return -1;  // ¿©´Â °ıÈ£´Â ¿ì¼±¼øÀ§ ºñ±³ ´ë»ó ¾Æ´Ô
+    return -1;  // ì—¬ëŠ” ê´„í˜¸ëŠ” ìš°ì„ ìˆœìœ„ ë¹„êµ ëŒ€ìƒ ì•„ë‹˜
 }
 
-// ÁßÀ§Ç¥±â½ÄÀ» ÈÄÀ§Ç¥±â½ÄÀ¸·Î º¯È¯
+// ì¤‘ìœ„í‘œê¸°ì‹ì„ í›„ìœ„í‘œê¸°ì‹ìœ¼ë¡œ ë³€í™˜
 void infixToPostfix(char* infix) {
     Stack s;
     initStack(&s);
@@ -79,16 +79,16 @@ void infixToPostfix(char* infix) {
     }
     postfix[j] = '\0';
 
-    printf("ÈÄÀ§Ç¥±â½Ä: %s\n", postfix);
+    printf("í›„ìœ„í‘œê¸°ì‹: %s\n", postfix);
 
-    // °è»ê °á°ú Ãâ·Â
+    // ê³„ì‚° ê²°ê³¼ ì¶œë ¥
     int result = evaluatePostfix(postfix);
-    printf("ÈÄÀ§Ç¥±â½Ä °è»ê °á°ú: %d\n", result);
+    printf("í›„ìœ„í‘œê¸°ì‹ ê³„ì‚° ê²°ê³¼: %d\n", result);
 }
 
 
-// Stack ±¸ÇöÄÚµå´Â À§ ÄÚµå ¿¹½Ã È°¿ë
-// ÈÄÀ§Ç¥±â½ÄÀ» °è»êÇÏ´Â ÇÔ¼ö
+// Stack êµ¬í˜„ì½”ë“œëŠ” ìœ„ ì½”ë“œ ì˜ˆì‹œ í™œìš©
+// í›„ìœ„í‘œê¸°ì‹ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
 int evaluatePostfix(char* postfix) {
     Stack s;
     initStack(&s);
@@ -96,9 +96,9 @@ int evaluatePostfix(char* postfix) {
     for (int i = 0; postfix[i] != '\0'; i++) {
         char ch = postfix[i];
 
-        // ÇÇ¿¬»êÀÚ (¼ıÀÚ)
+        // í”¼ì—°ì‚°ì (ìˆ«ì)
         if (isdigit(ch)) {
-            push(&s, ch - '0');  // ¹®ÀÚ '3' ¡æ ¼ıÀÚ 3
+            push(&s, ch - '0');  // ë¬¸ì '3' â†’ ìˆ«ì 3
         }
         else {
             int val2 = pop(&s);
@@ -120,7 +120,7 @@ int evaluatePostfix(char* postfix) {
 
 int main() {
     char postfix[MAX];
-    printf("ÁßÀ§Ç¥±â½ÄÀ» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("ì¤‘ìœ„í‘œê¸°ì‹ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     scanf_s("%s", &postfix, (unsigned)_countof(postfix));
     infixToPostfix(postfix);
 
