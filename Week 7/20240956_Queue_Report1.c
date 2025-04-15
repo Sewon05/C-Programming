@@ -9,26 +9,26 @@ typedef struct {
     int rear;
 } LinearQueue;
 
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void initQueue(LinearQueue* q) {
     q->front = 0;
     q->rear = -1;
 }
 
-// Å¥°¡ ºñ¾î ÀÖ´ÂÁö È®ÀÎ
+// íê°€ ë¹„ì–´ ìˆëŠ”ì§€ í™•ì¸
 bool isEmpty(LinearQueue* q) {
     return q->rear < q->front;
 }
 
-// Å¥°¡ °¡µæ Ã¡´ÂÁö È®ÀÎ
+// íê°€ ê°€ë“ ì°¼ëŠ”ì§€ í™•ì¸
 bool isFull(LinearQueue* q) {
     return q->rear == SIZE - 1;
 }
 
-// »ğÀÔ ÇÔ¼ö
+// ì‚½ì… í•¨ìˆ˜
 bool enqueue(LinearQueue* q, int value) {
     if (isFull(q)) {
-        printf("Å¥°¡ °¡µæ Ã¡½À´Ï´Ù.\n");
+        printf("íê°€ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.\n");
         return false;
     }
     q->rear++;
@@ -36,11 +36,11 @@ bool enqueue(LinearQueue* q, int value) {
     return true;
 }
 
-// »èÁ¦ ÇÔ¼ö (Å¥°¡ ºñ¸é ÀÚµ¿ ÃÊ±âÈ­)
+// ì‚­ì œ í•¨ìˆ˜ (íê°€ ë¹„ë©´ ìë™ ì´ˆê¸°í™”)
 int dequeue(LinearQueue* q) {
     if (isEmpty(q)) {
-        printf("Å¥°¡ ºñ¾î ÀÖ½À´Ï´Ù. Å¥¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.\n");
-        initQueue(q);  // Å¥ ÃÊ±âÈ­
+        printf("íê°€ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤. íë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.\n");
+        initQueue(q);  // í ì´ˆê¸°í™”
         return -1;
     }
     int value = q->data[q->front];
@@ -48,53 +48,53 @@ int dequeue(LinearQueue* q) {
     return value;
 }
 
-// Å¥ Ãâ·Â ÇÔ¼ö
+// í ì¶œë ¥ í•¨ìˆ˜
 void printQueue(LinearQueue* q) {
     if (isEmpty(q)) {
-        printf("Å¥°¡ ºñ¾î ÀÖ½À´Ï´Ù.\n");
+        printf("íê°€ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.\n");
         return;
     }
-    printf("Å¥ÀÇ µ¥ÀÌÅÍ: ");
+    printf("íì˜ ë°ì´í„°: ");
     for (int i = q->front; i <= q->rear; i++) {
         printf("%d ", q->data[i]);
     }
     printf("\n");
 }
 
-// ¸ŞÀÎ ÇÔ¼ö - ¸Ş´º ±¸Çö
+// ë©”ì¸ í•¨ìˆ˜ - ë©”ë‰´ êµ¬í˜„
 int main() {
     LinearQueue q;
     initQueue(&q);
 
     int choice, value;
     while (1) {
-        printf("\n==== Å¥ ¸Ş´º ====\n");
-        printf("1. »ğÀÔ\n");
-        printf("2. »èÁ¦\n");
-        printf("3. Å¥ µ¥ÀÌÅÍ Ãâ·Â\n");
-        printf("4. Á¾·á\n");
-        printf("¼±ÅÃ: ");
+        printf("\n==== í ë©”ë‰´ ====\n");
+        printf("1. ì‚½ì…\n");
+        printf("2. ì‚­ì œ\n");
+        printf("3. í ë°ì´í„° ì¶œë ¥\n");
+        printf("4. ì¢…ë£Œ\n");
+        printf("ì„ íƒ: ");
         scanf_s("%d", &choice);
 
         switch (choice) {
         case 1:
-            printf("»ğÀÔÇÒ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä: ");
+            printf("ì‚½ì…í•  ê°’ì„ ì…ë ¥í•˜ì„¸ìš”: ");
             scanf_s("%d", &value);
             enqueue(&q, value);
             break;
         case 2:
             value = dequeue(&q);
             if (value != -1)
-                printf("»èÁ¦µÈ °ª: %d\n", value);
+                printf("ì‚­ì œëœ ê°’: %d\n", value);
             break;
         case 3:
             printQueue(&q);
             break;
         case 4:
-            printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
+            printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
             return 0;
         default:
-            printf("Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.\n");
+            printf("ì˜ëª»ëœ ì„ íƒì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.\n");
         }
     }
 
