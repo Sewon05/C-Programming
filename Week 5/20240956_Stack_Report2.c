@@ -10,20 +10,20 @@ int isMatchingPair(char open, char close) {
 
 int main() {
     char input[101];
-    printf("¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("ë¬¸ìì—´ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     fgets(input, sizeof(input), stdin);
 
-    // ÁÙ¹Ù²Ş Á¦°Å
+    // ì¤„ë°”ê¿ˆ ì œê±°
     size_t len = strlen(input);
     if (input[len - 1] == '\n') {
         input[len - 1] = '\0';
         len--;
     }
 
-    // ½ºÅÃ µ¿Àû ÇÒ´ç
+    // ìŠ¤íƒ ë™ì  í• ë‹¹
     char* stack = (char*)malloc(len * sizeof(char));
     if (stack == NULL) {
-        fprintf(stderr, "¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
+        fprintf(stderr, "ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
         return 1;
     }
 
@@ -46,15 +46,15 @@ int main() {
         }
     }
 
-    // ½ºÅÃÀÌ ºñ¾îÀÖÁö ¾ÊÀ¸¸é À¯È¿ÇÏÁö ¾ÊÀ½
+    // ìŠ¤íƒì´ ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
     if (top != -1) {
         isValid = 0;
     }
 
     if (isValid)
-        printf("À¯È¿ÇÑ °ıÈ£\n");
+        printf("ìœ íš¨í•œ ê´„í˜¸\n");
     else
-        printf("À¯È¿ÇÏÁö ¾ÊÀº °ıÈ£\n");
+        printf("ìœ íš¨í•˜ì§€ ì•Šì€ ê´„í˜¸\n");
 
     free(stack);
     return 0;
