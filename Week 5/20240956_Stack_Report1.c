@@ -3,37 +3,37 @@
 #include <string.h>
 
 int main() {
-    char input[101];  // ÃÖ´ë 100ÀÚ + null ¹®ÀÚ
-    printf("¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    char input[101];  // ìµœëŒ€ 100ì + null ë¬¸ì
+    printf("ë¬¸ìì—´ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     fgets(input, sizeof(input), stdin);
 
-    // ÁÙ¹Ù²Ş ¹®ÀÚ°¡ ÀÖÀ¸¸é Á¦°Å
+    // ì¤„ë°”ê¿ˆ ë¬¸ìê°€ ìˆìœ¼ë©´ ì œê±°
     size_t len = strlen(input);
     if (input[len - 1] == '\n') {
         input[len - 1] = '\0';
         len--;
     }
 
-    // ½ºÅÃ µ¿Àû ÇÒ´ç
+    // ìŠ¤íƒ ë™ì  í• ë‹¹
     char* stack = (char*)malloc(len * sizeof(char));
     if (stack == NULL) {
-        fprintf(stderr, "¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
+        fprintf(stderr, "ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
         return 1;
     }
 
-    // ¹®ÀÚ¿­À» ½ºÅÃ¿¡ Çª½Ã
+    // ë¬¸ìì—´ì„ ìŠ¤íƒì— í‘¸ì‹œ
     for (size_t i = 0; i < len; i++) {
         stack[i] = input[i];
     }
 
-    // ½ºÅÃ¿¡¼­ ÆËÇÏ¸ç Ãâ·Â
-    printf("°Å²Ù·Î Ãâ·ÂµÈ ¹®ÀÚ¿­: ");
+    // ìŠ¤íƒì—ì„œ íŒí•˜ë©° ì¶œë ¥
+    printf("ê±°ê¾¸ë¡œ ì¶œë ¥ëœ ë¬¸ìì—´: ");
     for (int i = len - 1; i >= 0; i--) {
         putchar(stack[i]);
     }
     printf("\n");
 
-    // ¸Ş¸ğ¸® ÇØÁ¦
+    // ë©”ëª¨ë¦¬ í•´ì œ
     free(stack);
     return 0;
 }
